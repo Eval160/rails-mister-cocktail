@@ -1,9 +1,42 @@
-<h1>Cocktails list</h1>
+<div class="banner">
+  <div class="container">
+    <h1>Mister Cocktail</h1>
+  </div>
+</div>
 
-<ul>
-  <% @cocktails.each do |cocktail| %>
-    <li><%= link_to cocktail.name, cocktail_path(cocktail) %></li>
-  <% end %>
-</ul>
-<%= link_to 'Add a new cocktail', new_cocktail_path %>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
 
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <%= link_to "All cocktails", cocktails_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Add your cocktail", new_cocktail_path, class: "nav-link" %>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row mt-3">
+    <% @cocktails.each do |cocktail| %>
+
+      <div class="card-trip m-2">
+        <img src="https://source.unsplash.com/featured/?cocktail,<%= cocktail.name %>" />
+        <div class="card-trip-infos">
+          <div>
+            <h2><%= cocktail.name %></h2>
+          </div>
+          <h2 class="card-trip-pricing"> <%= link_to "See detail", cocktail_path(cocktail), class: "btn btn-primary" %></h2>
+        </div>
+      </div>
+
+
+    <% end %>
+  </div>
+</div>
