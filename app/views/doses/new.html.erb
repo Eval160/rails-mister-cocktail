@@ -1,0 +1,7 @@
+<%= simple_form_for [ @cocktail, @dose ] do |f|%>
+  <%= f.input :description %>
+  <%= f.association :ingredient, as: :radio_buttons %>
+  <%= f.button :submit %>
+<% end %>
+
+<%= link_to "Back to #{@cocktail.name}", cocktail_path(@cocktail) %>
