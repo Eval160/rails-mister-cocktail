@@ -1,26 +1,51 @@
+<div class="banner">
+  <div class="container">
+    <h1>Mister Cocktail</h1>
+  </div>
+</div>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+         <%= link_to "All cocktails", cocktails_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Add your cocktail", new_cocktail_path, class: "nav-link" %>
+      </li>
+    </ul>
+      <%= simple_form_for :search, url: root_path, method: "GET", html: { class: 'form-inline my-2 my-lg-0' } do |f| %>
+        <%= f.input :name, label: false ,input_html: {value: ""} %>
+        <%= f.submit "Search a cocktail", class: "btn btn-outline-success ml-2" %>
+      <% end %>
+  </div>
+</nav>
+
+
 <div class="container">
   <div class="row justify-content-md-center mt-5">
-    <div class="col-6 shadow text-center">
-      <h2>Cocktail <%= @cocktail.name %></h2>
+    <div class="col-6 shadow text-center p-5">
 
-      <% if @cocktail.photo.attached? %>
-        <%= cl_image_tag @cocktail.photo.key, height: 200, width: 300, crop: :fill %>
-      <% else %>
-       <img src="https://source.unsplash.com/featured/?cocktail,<%= @cocktail.name %>" width="300" margin-bottom="20px"/>
-      <% end %>
-
-
-      <ul class="list-unstyled">
-        <% @cocktail.doses.each do |dose|%>
-          <li>
-            <%= dose.description%> <%= dose.ingredient.name %>
-            <%= link_to "delete", dose_path(dose), method: :delete, data: {confirm: "Are you sure?" } %>
-          </li>
+      <div class="px-5">
+        <h2>Cocktail <%= @cocktail.name %></h2>
+        <% if @cocktail.photo.attached? %>
+          <%= cl_image_tag @cocktail.photo.key, height: 200, width: 300, crop: :fill %>
+        <% else %>
+         <img src="https://source.unsplash.com/featured/?cocktail,<%= @cocktail.name %>" width="300" margin-bottom="20px"/>
         <% end %>
-      </ul>
+        <ul class="list-unstyled mt-3">
+          <% @cocktail.doses.each do |dose|%>
+            <li class="d-flex justify-content-between">
+              <%= dose.description%> <%= dose.ingredient.name %>
+              <%= link_to "delete", dose_path(dose), method: :delete, data: {confirm: "Are you sure?" }, class: "btn btn-outline-danger  btn-sm" %>
+            </li>
+          <% end %>
+        </ul>
+        <%= link_to "Add an ingredient", new_cocktail_dose_path(@cocktail), class: "btn btn-success" %>
+        <%= link_to "Back", cocktails_path,class: "btn btn-outline-success" %>
+      </div>
 
-      <%= link_to "Add an ingredient", new_cocktail_dose_path(@cocktail) %>
-      <%= link_to "Back", cocktails_path %>
     </div>
   </div>
 </div>
