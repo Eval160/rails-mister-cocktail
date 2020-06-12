@@ -9,10 +9,12 @@ $headings-font-family:    $headers-font;
 $body-bg:                 $light-gray;
 $font-size-base: 1rem;
 
+$my-green: #6dba00;
+// $my-green-hover: #bacd78;
 // Colors
 $body-color: $gray;
 $primary:    $blue;
-$success:    $green;
+$success:    $my-green;
 $info:       $yellow;
 $danger:     $red;
 $warning:    $orange;
