@@ -1,14 +1,39 @@
+<div class="banner">
+  <div class="container">
+    <h1>Mister Cocktail</h1>
+  </div>
+</div>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+         <%= link_to "All cocktails", cocktails_path, class: "nav-link active" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Add your cocktail", new_cocktail_path, class: "nav-link disabled active" %>
+      </li>
+    </ul>
+      <%= simple_form_for :search, url: root_path, method: "GET", html: { class: 'form-inline my-2 my-lg-0' } do |f| %>
+        <%= f.input :name, label: false ,input_html: {value: ""} %>
+        <%= f.submit "Search a cocktail", class: "btn btn-outline-success ml-2" %>
+      <% end %>
+  </div>
+</nav>
+
 <div class="container">
   <div class="row justify-content-md-center mt-5">
-    <div class="col-6 shadow">
+    <div class="col-6 shadow d-flex flex-column">
+      <div  class="mt-2 py-5 mx-auto">
       <h2>Create new cocktail</h2>
       <%= simple_form_for @cocktail do |f| %>
         <%= f.input :name %>
-        <%= f.input :photo, as: :file %>
-        <%= f.button :submit %>
+        <%= f.input :photo, as: :file%>
+        <%= f.button :submit, class: "btn btn-success "%>
+               <%= link_to "Back", cocktails_path, class: "btn btn-outline-success"  %>
       <% end %>
-
-      <%= link_to "Back", cocktails_path %>
+      </div>
     </div>
   </div>
 </div>
