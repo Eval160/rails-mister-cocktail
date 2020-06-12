@@ -25,9 +25,12 @@
 <div class="container">
   <div class="row mt-3">
     <% @cocktails.each do |cocktail| %>
-
       <div class="card-trip m-2">
-        <img src="https://source.unsplash.com/featured/?cocktail,<%= cocktail.name %>" />
+        <% if cocktail.photo.attached? %>
+          <%= cl_image_tag cocktail.photo.key, height: 200, width: 300, crop: :fill %>
+        <% else %>
+         <img src="https://source.unsplash.com/featured/?cocktail,<%= cocktail.name %>" />
+        <% end %>
         <div class="card-trip-infos">
           <div>
             <h2><%= cocktail.name %></h2>

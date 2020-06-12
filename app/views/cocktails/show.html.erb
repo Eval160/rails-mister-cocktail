@@ -1,16 +1,27 @@
+<div class="container">
+  <div class="row justify-content-md-center mt-5">
+    <div class="col-6 shadow text-center">
+      <h2>Cocktail <%= @cocktail.name %></h2>
+
+      <% if @cocktail.photo.attached? %>
+        <%= cl_image_tag @cocktail.photo.key, height: 200, width: 300, crop: :fill %>
+      <% else %>
+       <img src="https://source.unsplash.com/featured/?cocktail,<%= @cocktail.name %>" width="300" margin-bottom="20px"/>
+      <% end %>
 
 
-<h2>Cocktail <%= @cocktail.name %></h2>
+      <ul class="list-unstyled">
+        <% @cocktail.doses.each do |dose|%>
+          <li>
+            <%= dose.description%> <%= dose.ingredient.name %>
+            <%= link_to "delete", dose_path(dose), method: :delete, data: {confirm: "Are you sure?" } %>
+          </li>
+        <% end %>
+      </ul>
 
+      <%= link_to "Add an ingredient", new_cocktail_dose_path(@cocktail) %>
+      <%= link_to "Back", cocktails_path %>
+    </div>
+  </div>
+</div>
 
-<ul>
-  <% @cocktail.doses.each do |dose|%>
-    <li>
-      <%= dose.description%> <%= dose.ingredient.name %>
-      <%= link_to "delete", dose_path(dose), method: :delete, data: {confirm: "Are you sure?" } %>
-    </li>
-  <% end %>
-</ul>
-
-<%= link_to "Add an ingredient", new_cocktail_dose_path(@cocktail) %>
-<%= link_to "Back", cocktails_path %>
