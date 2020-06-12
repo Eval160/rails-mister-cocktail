@@ -8,19 +8,16 @@
 require 'json'
 require 'open-uri'
 
+puts "Delete all dose"
+Dose.delete_all
+
 puts "Delete all cocktails"
+
 Cocktail.delete_all
+
 puts "Delete all ingredients"
+
 Ingredient.delete_all
-# Ingredient.create(name: "lemon")
-# Ingredient.create(name: "ice")
-# Ingredient.create(name: "mint leaves")
-# Ingredient.create(name: "vodka")
-# Ingredient.create(name: "rhum")
-# Ingredient.create(name: "orange juice")
-# Ingredient.create(name: "tequila")
-# Ingredient.create(name: "tomato juice")
-# Ingredient.create(name: "ananas juice")
 
 url_ingregients = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
 ingredients = JSON.parse(open(url_ingregients).read)["drinks"]
@@ -71,7 +68,6 @@ puts "Create new cocktails"
             else
               j += 1
             end
-
           end
         end
       end
